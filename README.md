@@ -49,4 +49,4 @@ The API will be available at `https://localhost:7xxx` and `http://localhost:5xxx
 
 ## License
 
-This project is licensed under the Apache License.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
