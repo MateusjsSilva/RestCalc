@@ -1,3 +1,5 @@
+using System.Reflection;
+using RestCalc.Api.Services;
 
 namespace RestCalc.Api
 {
@@ -7,12 +9,24 @@ namespace RestCalc.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo 
+                { 
+                    Title = "RestCalc API", 
+                    Version = "v1",
+                    Description = "A REST API calculator with basic arithmetic operations"
+                });
+                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+            
+            builder.Services.AddScoped<ICalculatorService, CalculatorService>();
 
             var app = builder.Build();
 
