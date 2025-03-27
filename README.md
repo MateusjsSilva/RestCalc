@@ -29,16 +29,11 @@ git clone git@github.com:MateusjsSilva/RestCalc.git
 cd RestCalc
 ```
 
-Build the project:
-
-```bash
-dotnet build
-```
-
-Run the application:
+Build and run the project:
 
 ```bash
 cd RestCalc.Api
+dotnet build
 dotnet run
 ```
 
